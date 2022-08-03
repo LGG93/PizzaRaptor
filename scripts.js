@@ -51,11 +51,11 @@ let obArr = [{x:Math.floor(Math.random() * 1500 - 100) + 1,y: -200,img: food1, o
      {x:Math.floor(Math.random() * 1500 - 100) + 1,y: -300,img: ob2, ob : true},
      {x:Math.floor(Math.random() * 1500 - 100) + 1,y: -500,img: ob3, ob : true}
     ];
-//Restart
+//Restart Game
 document.getElementById('restartBtn').onclick = () => {
     restart();
 }; 
-    
+
 function restart(){
     startScreen.style.display = 'none';
     gameOverScreen.style.display = 'none';
@@ -151,8 +151,6 @@ function gameOver(){
     gameOverScreen.style.display = 'flex';
     startScreen.style.display = 'none';
 };
-
-//Restart Game
 
 
 
