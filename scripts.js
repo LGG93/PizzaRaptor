@@ -6,13 +6,21 @@ let gameOverScreen = document.querySelector('#gameOver')
 let intervalId = 0;
 let score = 0;
 let missed = 0;
+let instructions = document.querySelector('.instructions')
 const game = document.querySelector('#game');
-
+//Initial Position
 let dinox = 750;
 let dinoy = 550;
 let randomx = Math.floor(Math.random() * 1500) + 1; 
 let randomy = -200;
-
+//Music
+let introMusic = new Audio('Audios/IntroSong.mp3');
+introMusic.volume = 0.2;
+let backgroundMusic = new Audio('Audios/gameSong.mp3');
+backgroundMusic.volume = 0.2;
+let gameOverSong = new Audio('Audios/pou-game-over-sound-effect.mp3');
+gameOverSong.volume = 0.3;
+//Images
 let dinosaur = new Image();
 dinosaur.src = "./images/dinoblue-CutOut.png"
 let background = new Image();
@@ -20,13 +28,11 @@ background.src = "./images/background.jpg"
 let backgroundOver = new Image();
 backgroundOver = "./images/backgroundGameOver.png"
 let ctx = canvas.getContext("2d");
+
 //OBSTACLES
-//Objects
-
-
+//*Objects
 let ob1 = new Image();
 ob1.src = "./images/object (1)-CutOut.png";
-
 
 let ob2 = new Image();
 ob2.src = "./images/object (2)-CutOut.png";
@@ -34,7 +40,7 @@ ob2.src = "./images/object (2)-CutOut.png";
 let ob3 = new Image();
 ob3.src = "./images/object (3)-CutOut.png";
 
-//Food
+//*Food
 let food1 = new Image();
 food1.src = "./images/food (1)-CutOut.png";
 
@@ -54,6 +60,7 @@ let obArr = [{x:Math.floor(Math.random() * 1500 - 100) + 1,y: -200,img: food1, o
 //Restart Game
 document.getElementById('restartBtn').onclick = () => {
     restart();
+    backgroundMusic.play();
 }; 
 
 function restart(){
@@ -75,10 +82,20 @@ function restart(){
 
 //Start Game
 window.onload = () => {
+    instructions.style.display = 'none';
     game.style.display = 'none';
     gameOverScreen.style.display = 'none';
+
     document.getElementById('startBtn').onclick = () => {
         startGame();
+        backgroundMusic.play();
+        introMusic.pause();
+    }
+    document.getElementById('instructionsBtn').onclick = () => {
+    instructions.style.display = 'block';
+    }
+    document.querySelector('.closeInstructions').onclick = () => {
+        instructions.style.display = 'none';
     }
 };
 
@@ -129,7 +146,8 @@ function startGame() {
   
     if (missed > 2 || isGameOver == true){  
         cancelAnimationFrame(intervalId);
-        gameOver();   
+        gameOver(); 
+        backgroundMusic.pause();  
     }
     else{
         intervalId = requestAnimationFrame(startGame);
@@ -140,8 +158,10 @@ function startGame() {
 document.addEventListener('keydown', (event) => {
     if(event.code === 'ArrowRight' && dinox < 1300){
         dinox += 40;
+        dinosaur.src = "./images/dinoblueflipped.png"
     } else if(event.code === 'ArrowLeft' && dinox > 1){
         dinox -=40;
+        dinosaur.src = "./images/dinoblue-CutOut.png"
     }
 });
 
@@ -150,6 +170,8 @@ function gameOver(){
     game.style.display = 'none';
     gameOverScreen.style.display = 'flex';
     startScreen.style.display = 'none';
+    gameOverSong.play();
+    backgroundMusic.pause();
 };
 
 
