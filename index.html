@@ -15,7 +15,12 @@
         <br />
         <button id="instructionsBtn">Instructions</button>
         <button id ="startBtn">Start Game</button>
-    </div>
+      </div>  
+        <div class="soundBtnContainer">
+        <input class="soundBtn" type="image" src="images/volumePic.png"/>
+      </div>
+      
+    
 
     <div class="instructions">
       <div class="textInstructions">
@@ -37,7 +42,8 @@
         <canvas id="canvas" width="1500" height="840"></canvas>
       </div>
       <div id="gameOver">
-        <div class="gameOverContainer">
+        <div class="gameOver">
+          <h4>Score  : <span id="score"></span></h4>
           <img src="./images/backgroundGameOver.png" class="overPic"/>
         <button id="restartBtn">Play Again</button>
       </div>

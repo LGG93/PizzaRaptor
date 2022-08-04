@@ -5,6 +5,7 @@ let startScreen = document.querySelector('.gameStart')
 let gameOverScreen = document.querySelector('#gameOver')
 let intervalId = 0;
 let score = 0;
+let scoreElement = document.querySelector('#score')
 let missed = 0;
 let instructions = document.querySelector('.instructions')
 const game = document.querySelector('#game');
@@ -19,7 +20,12 @@ introMusic.volume = 0.2;
 let backgroundMusic = new Audio('Audios/gameSong.mp3');
 backgroundMusic.volume = 0.2;
 let gameOverSong = new Audio('Audios/pou-game-over-sound-effect.mp3');
-gameOverSong.volume = 0.3;
+gameOverSong.volume = 0.5;
+let musicPlaying = false;
+let foodSound = new Audio('Audios/sonic-ring-sound-effect-hd.mp3');
+foodSound.volume = 0.2;
+let objectSound = new Audio('Audios/quack-sound-effect.mp3');
+objectSound.volume = 0.2;
 //Images
 let dinosaur = new Image();
 dinosaur.src = "./images/dinoblue-CutOut.png"
@@ -80,12 +86,12 @@ function restart(){
     startGame();
     };
 
-//Start Game
+//Intro Game
 window.onload = () => {
     instructions.style.display = 'none';
     game.style.display = 'none';
     gameOverScreen.style.display = 'none';
-
+    
     document.getElementById('startBtn').onclick = () => {
         startGame();
         backgroundMusic.play();
@@ -97,8 +103,16 @@ window.onload = () => {
     document.querySelector('.closeInstructions').onclick = () => {
         instructions.style.display = 'none';
     }
+    document.querySelector('.soundBtn').onclick = () => {
+        musicPlaying = !musicPlaying;
+        if (musicPlaying == false){
+            introMusic.pause();
+        }else {
+            introMusic.play();
+        }
+    }
 };
-
+//Start Game
 function startGame() {
     game.style.display = 'block';
     startScreen.style.display = 'none';
@@ -123,10 +137,8 @@ function startGame() {
         }
         else if( score >= 10){
         currentElement.y += 4;
-        console.log("10")
         }
         else if( score >= 15 ) {
-            console.log("15");
             currentElement.y += 25;
         }
         if(currentElement.y > canvas.height){
@@ -134,11 +146,13 @@ function startGame() {
             currentElement.x =  Math.floor(Math.random() * 1500) + 1
         }
         if (dinox < currentElement.x + 100 && dinox + 200 > currentElement.x && dinoy < currentElement.y + 100 && currentElement.ob == false) {
+            foodSound.play();
             currentElement.y = -200;
             score += 1; 
         }
 
         else if (dinox < currentElement.x + 100 && dinox + 200 > currentElement.x && dinoy < currentElement.y + 100 && currentElement.ob == true) {
+            objectSound.play();
             currentElement.y = -200; 
             missed += 1; 
         }
@@ -170,10 +184,7 @@ function gameOver(){
     game.style.display = 'none';
     gameOverScreen.style.display = 'flex';
     startScreen.style.display = 'none';
+    scoreElement.innerText = score
     gameOverSong.play();
     backgroundMusic.pause();
 };
-
-
-
-
