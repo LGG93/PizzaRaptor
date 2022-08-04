@@ -60,7 +60,9 @@ RESTARTING THE GAME
 
 
 Git
-URls for the project repo and deploy Link Repo Link Deploy
+URls for the project repo.
+https://github.com/LGG93/PizzaRaptor/tree/main
+and deploy Link Repo Link Deploy:
 
 Slides
-URls for the project presentation (slides) Link Slides.com
+URls for the project presentation (slides)
