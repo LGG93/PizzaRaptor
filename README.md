@@ -1,7 +1,7 @@
 Pizza Raptor Game (Project 1 Bootcamp Ironhack)
 
 Description
-It is based on a side game from the game Pou, an old Android game. It has 3 screens : the starting screen with instructions option, main game and a game Over
+It is based on a side game from the game Pou, an old Android game. It has 3 screens : the starting screen with instructions option, main game and a Game Over
 screen with the option to restart the game.
 
 MVP (DOM - CANVAS)
@@ -50,6 +50,7 @@ GAME OVER
 -Score display
 -Restart button
 -restart() {}
+-Game Over music .play() .Pause()
 
 RESTARTING THE GAME
 -Restart(){}
