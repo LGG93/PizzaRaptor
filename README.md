@@ -64,6 +64,7 @@ Git
 URls for the project repo.
 https://github.com/LGG93/PizzaRaptor/tree/main
 and deploy Link Repo Link Deploy:
+https://lgg93.github.io/PizzaRaptor/
 
 Slides
 URls for the project presentation (slides)
